@@ -1,0 +1,103 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 10px;
+  background-color: #f0f0f0;
+}
+.container-fluid {
+display: flex;
+flex-direction: row;
+align-items: start;
+overflow-x: auto;
+overflow-y: hidden;
+gap: 1px;
+padding: 1px;
+width: 100%;
+box-sizing: border-box;
+
+  
+ 
+}
+.card {
+  width: 200px;
+  height: 320px;
+
+  margin: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  flex: 0 0 auto;
+ 
+ 
+  
+   
+}
+.card img {
+  width: 100%;
+ height: auto;
+ object-fit: cover;
+  border-radius: 10px;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* This will change the scrollbar's background color */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* This will change the scrollbar's thumb color */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* This will change the scrollbar's thumb color when you hover over it */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1px;
+  margin: 0;
+ 
+  
+ 
+}
+
+button {
+  padding: 10px 15px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: auto; 
+  border-radius: 5px;
+}
+
+button a{
+ text-decoration: none;
+  color: white;
+}
+.picture {
+  
+}
+.details {
+  padding-left: 2%;
+ 
+}
+.items{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
+  width: 30cm;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  margin: 10px;
+  padding: 10px;
+  background-color: white;
+  
+}
