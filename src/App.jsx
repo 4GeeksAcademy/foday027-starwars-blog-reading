@@ -1,82 +1,88 @@
-
 import "./App.css";
+import { v4 as uuid } from "uuid";
 
-
-import { useEffect , useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import myContext from './store/MyContext';
+import myContext from "./store/MyContext";
 import Routers from "./store/Routers";
 // import PlanetsDetails from './components/PlanetsDetails';
 
 let baseUrl = "https://swapi.dev/api/";
 let imgBase = "https://starwars-visualguide.com/assets/img/characters";
-let imgBase1 = "https://starwars-visualguide.com/assets/img/planets"
-// let imgBase2 = "https://starwars-visualguide.com/assets/img/starships"
+let imgBase1 = "https://starwars-visualguide.com/assets/img/planets";
+let imgBase2 = "https://starwars-visualguide.com/assets/img/starships";
 
 function App() {
   const [characters, setCharacters] = useState([]);
-  const [planets , setPlanets] = useState([])
-  
-  useEffect(() => {
-    async function getCharacters() {
-      try {
-        let response = await axios.get(`${baseUrl}people`);
-        let data = response.data.results;
-        let characters = data.map((character, index) => {
-          let img = `${imgBase}/${index + 1}.jpg`;
-          // let id = index + 1;
-          return { ...character, img };
-        });
-        console.log(characters);
-        setCharacters(characters);
-        
-      } catch (error) {
-        console.log(error);
-        
-      }
-    }
-    getCharacters();
-  
+  const [planets, setPlanets] = useState([]);
+  const [starships, setStarships] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+  const [favorites, setFavorites] = useState([]); 
 
-  }, []);
-
-  useEffect(() => {
-    
-  
-  async function getPlanets() {
-
-    try {
-      let response = await axios.get(`${baseUrl}planets`);
-      let data = response.data.results
-      let planets = data.map((planet , index) => {
-        let img = `${imgBase1}/${index + 1}.jpg`;
-        return {...planet, img}
-
-      } )
-      console.log(planets)
-      setPlanets(planets)
+  const addFavorite = (id ) => {
+    if (!favorites.includes(id)) {
+      setFavorites([...favorites,id]);
       
-    } catch (error) {
-      console.log(error)
     }
-
-  }
-  getPlanets()
     
-  },[] );
-
-
+  }
+  const removeFavorite = (id) => {
+    let newFavorites = favorites.filter((fav) => fav !== id);
+    setFavorites(newFavorites);
+  }
  
 
+  useEffect(() => {
+    async function getData() {
+      try {
+        let characters = await axios.get(`${baseUrl}people`);
+        let planets = await axios.get(`${baseUrl}planets`);
+        let starships = await axios.get(`${baseUrl}starships`);
 
 
-  let context = {characters, setCharacters , planets , setPlanets};
+      
+
+        characters = characters.data.results.map((character, index) => {
+          let img = `${imgBase}/${index + 1}.jpg`;
+          let id = uuid();
+          let type = "character"
+          return { ...character, img, id , type};
+        });
+
+        planets = planets.data.results.map((planet, index) => {
+          let img = `${imgBase1}/${index + 1}.jpg`;
+          let id = uuid();
+          let type = "planet"
+
+          return { ...planet, img, id , type};
+        });
+
+        starships = starships.data.results.map((starship, index) => {
+          let img = `${imgBase2}/${index + 1}.jpg`;
+          let id = uuid();
+          let type =  "starship"
+          return { ...starship, img, id, type};
+        });
+
+        setCharacters(characters);
+        setPlanets(planets);
+        setStarships(starships);
+
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    getData();
+  }, []);
+
+  let context = { characters, planets,starships , setCharacters, setPlanets , setStarships , searchResults, setSearchResults, addFavorite, removeFavorite, favorites};
 
   return (
     <>
-     <myContext.Provider value={context}>
-    <Routers />
-  </myContext.Provider>
+      <myContext.Provider value={context}>
+        <Routers />
+      </myContext.Provider>
     </>
   );
 }

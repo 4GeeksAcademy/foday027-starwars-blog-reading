@@ -1,51 +1,35 @@
-import  { useContext, useEffect} from 'react'
-import { useParams } from 'react-router-dom'
-import myContext from './../store/MyContext';
+import { useParams } from "react-router-dom";
+import { useContext } from "react";
+import myContext from "../store/MyContext";
 
-const PlanetsDetails = () => {
-    const {uid} = useParams
-    const context = useContext(myContext)
+function PlanetsDetails() {
+  const { uid } = useParams();
+  const context = useContext(myContext);
 
-    
-    
-
-
-  
-
+  let planet = context.planets.filter((el) => el.name === uid);
+  let data = planet[0];
+  let img = data?.img;
+  console.log(data?.name);
 
   return (
-   <div>
-      {context &&
-            context.planets.filter((planet) => planet.uid === uid).map((planet) => {
-                console.log(planet.name)
-              return (
-                <div className='items' key={planet.name}>
-                  <div className='picture'>
-                    <img src={planet.img} alt={planet.name} />
-                  </div>
-                  <div className='details'>
-                    <h3>Name : {planet.name}</h3>
-                    <h3>Created : {planet.created}</h3>
-                    <h3>Gravity : {planet.gravity}</h3>
-                    <h3>Terrain : {planet.terrain}</h3>
-                    <h3>Edited : {planet.edited}</h3>
-                    <h3>Rotation : {planet.rotation_period}</h3>
-                    <h3>Surface : {planet.surface_water}</h3>
-                    <h3>Diameter : {planet.diameter}</h3>
-                   
-                  </div>
-                </div>
-              );
-            })
-         }
+    <div className="items">
+      <div>
+        <img src={img} alt="" />
+      </div>
+      <div className="details">
+        <h1>Name: {data?.name} </h1>
 
-
-     
-  
-   </div>
-
-    
-  )
+        <p>Rotation period: {data?.rotation_period}</p>
+        <p>Orbital period: {data?.orbital_period}</p>
+        <p>Diameter: {data?.diameter}</p>
+        <p>Climate: {data?.climate}</p>
+        <p>Gravity: {data?.gravity}</p>
+        <p>Terrain: {data?.terrain}</p>
+        <p>Surface water: {data?.surface_water}</p>
+        <p>Population: {data?.population}</p>
+      </div>
+    </div>
+  );
 }
 
-export default PlanetsDetails
+export default PlanetsDetails;

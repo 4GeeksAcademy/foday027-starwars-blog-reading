@@ -2,14 +2,28 @@ import { useContext } from "react";
 import myContext from "../store/MyContext";
 import { Link } from "react-router-dom";
 import "../App.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart, faShare } from "@fortawesome/free-solid-svg-icons";
+
+
 
 const PeopleCard = () => {
   const context = useContext(myContext);
+
+  const toggleFavorite = (characterId) => {
+    const isFavorite = context.favorites.includes(characterId);
+    if (isFavorite) {
+      context.removeFavorite(characterId);
+    } else {
+      context.addFavorite(characterId);
+    }}
+  
   return (
     <>
       <div className="container-fluid">
         {context &&
           context.characters.map((character) => {
+            const isFavorite = context.favorites.includes(character.id); 
             return (
               <div className="card" key={character.name}>
                 <div>
@@ -18,30 +32,13 @@ const PeopleCard = () => {
                 <div className="item">
                   {character.name}
 
-                  <button className="btn btn-primary">
-                    <Link to={`/peopledetails/${character.name}`}>Details</Link>
+                  <button className="btn"  onClick={() => toggleFavorite(character.id ) }>
+                    <FontAwesomeIcon className="icon" icon={faHeart} color={isFavorite ? 'red' : "grey"} />
                   </button>
                 </div>
-              </div>
-            );
-          })}
-      </div>
-
-      <div className="container-fluid">
-        {context &&
-          context.planets.map((planet) => {
-            return (
-              <div className="card" key={planet.name}>
-                <div>
-                  <img src={planet.img} alt={planet.name} />
-                </div>
-                <div className="item">
-                  {planet.name}
-
-                  <button className="btn btn-primary">
-                    <Link to={`/planet/${planet.name}`}>Details</Link>
-                  </button>
-                </div>
+                <button className="btn2">
+                  <Link to={`/peopledetails/${character.name}`  }>Details</Link>
+                </button>
               </div>
             );
           })}
