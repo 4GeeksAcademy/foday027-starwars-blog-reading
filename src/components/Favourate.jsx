@@ -17,7 +17,7 @@ const Favourate = () => {
           {favorites.map((favorite, index) => (
             <Dropdown.Item key={index.name} onClick={() => removeFavorite(favorite)}>
               {favorite?.name ? favorite?.name: favorite}
-              <button className="btn btn-danger">X</button>
+              <button className="btn "><FontAwesomeIcon icon="fa-solid fa-trash-can" /></button>
             </Dropdown.Item>
           ))}
           <Dropdown.Divider />

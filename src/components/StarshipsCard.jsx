@@ -24,7 +24,7 @@ const StarshipsCard = () => {
             context.starships.map((starship) => {
                 const isFavorite = context.favorites.includes(starship.id); 
                 return (
-                <div className="card" key={starship.name}>
+                <div className="card bg-dark" key={starship.name}>
                     <div>
                     <img src={starship.img} alt={starship.name}
                     onError={(e) => e.target.src = "https://m.media-amazon.com/images/M/MV5BOTAzODEzNDAzMl5BMl5BanBnXkFtZTgwMDU1MTgzNzE@._V1_FMjpg_UX1000_.jpg"} />

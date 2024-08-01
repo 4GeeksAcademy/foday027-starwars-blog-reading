@@ -9,11 +9,11 @@ export const Navbar = () => {
   let navigate = useNavigate();
 
   return (
-    <nav id="nav" className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav id="nav" className="navbar navbar-expand-lg navbar-light bg-secondary">
       <div className="container-fluid">
         <a className="navbar-brand" onClick={() => navigate("/")} href="#">
           {" "}
-             <img src="https://logos-marcas.com/wp-content/uploads/2020/11/Star-Wars-Logo.png" width="100" height="50" alt="" />
+             <img className="headerimg" src="https://logos-marcas.com/wp-content/uploads/2020/11/Star-Wars-Logo.png" width="100" height="50" alt="" />
         </a>
 
         <Searchbar />

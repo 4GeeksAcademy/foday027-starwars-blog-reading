@@ -22,7 +22,7 @@ const PlanetsCard = () => {
           context.planets.map((planet) => {
             const isFavorite = context.favorites.includes(planet.id); 
             return (
-              <div className="card" key={planet.name}>
+              <div className="card bg-dark" key={planet.name}>
                 <div>
                   <img src={planet.img} alt={planet.name} 
                     onError={(e) => e.target.src = "https://m.media-amazon.com/images/M/MV5BOTAzODEzNDAzMl5BMl5BanBnXkFtZTgwMDU1MTgzNzE@._V1_FMjpg_UX1000_.jpg"}

@@ -25,7 +25,7 @@ const PeopleCard = () => {
           context.characters.map((character) => {
             const isFavorite = context.favorites.includes(character.id); 
             return (
-              <div className="card" key={character.name}>
+              <div className="card peopleCard bg-dark" key={character.name}>
                 <div>
                   <img src={character.img} alt={character.name} />
                 </div>

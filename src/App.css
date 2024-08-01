@@ -1,6 +1,6 @@
 body {
-  background-color: #000;
-  color: #FFF;
+  background-color:rgb(0, 0, 0);
+  color: white;
   font-family: "arial" sans-serif;
  
 }
@@ -9,11 +9,13 @@ body {
   background-color: #111; /* Dark background */
   border-bottom: 2px solid #feda4a; /* Gold accent line */
 }
+
 navbar .dropdown-front {
   z-index: 1000;
   position: relative;
   color: #feda4a; /* Gold text */
 }
+
 .container-fluid {
 display: flex;
 flex-direction: row;
@@ -22,14 +24,9 @@ gap: 1px;
 padding: 1px;
 width: 100%;
 box-sizing: border-box;
-
-
-
-
-
-  
- 
 }
+
+
 .overflow{
   overflow-y: scroll;
   
@@ -44,6 +41,7 @@ box-sizing: border-box;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   flex: 0 0 auto;
+  color: white;
  
  
   
@@ -161,9 +159,9 @@ body::after {
  
 }
 .btn2 {
-  color: #feda4a;
+  color: #fe6e4a;
   background-color: #111;
-  border: 2px solid #feda4a;
+  border: 2px solid red;
   border-radius: 10px;
   float: left;
   width: 100px;
@@ -182,4 +180,19 @@ body::after {
   color: black;
   text-align: center;
   padding: 10px 0;
+ }
+
+ .search {
+  border-radius: 15px;
+  text-align: center;
+  width: 300px;
+ }
+
+ .headerimg{
+  width: 200px;
+  height: 120px;
+ }
+
+ .footertext {
+  font-size: 20px;
  }
